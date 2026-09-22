@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
 import { formatCLP } from "@/lib/cabins";
+import { withCatalogImagesList } from "@/lib/cabinMedia";
 import PhotoUploader from "@/components/admin/PhotoUploader";
 import { Pencil, Trash2, X, Loader2, Save, BedDouble, Building2 } from "lucide-react";
 import MobileSelect from "@/components/admin/MobileSelect";
@@ -27,7 +28,7 @@ export default function CabanasAdmin() {
   const load = () => {
     setLoading(true);
     base44.entities.Cabin.list("order", 200)
-      .then(setItems)
+      .then((data) => setItems(withCatalogImagesList(data)))
       .finally(() => setLoading(false));
   };
 
