@@ -14,7 +14,9 @@ const allNav = [
   // Recepción también debe gestionar las solicitudes que llegan desde el sitio público.
   { to: "/admin/solicitudes", label: "Solicitudes de reserva", icon: CalendarClock, adminOnly: false },
   { to: "/admin/ocupacion", label: "Ocupación", icon: CalendarDays, adminOnly: false },
-  { to: "/admin/cabanas", label: "Cabañas y salones", icon: BedDouble, adminOnly: true },
+  // El acceso se mantiene visible como en el panel original. La página valida
+  // permisos antes de permitir cambios a las fichas de cabañas y salones.
+  { to: "/admin/cabanas", label: "Cabañas y salones", icon: BedDouble, adminOnly: false },
   { to: "/admin/cuenta", label: "Mi cuenta", icon: User, adminOnly: false },
 ];
 
