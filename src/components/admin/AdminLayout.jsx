@@ -11,7 +11,8 @@ const allNav = [
   { to: "/admin", label: "Panel", icon: LayoutDashboard, end: true, adminOnly: false },
   { to: "/admin/registro", label: "Nuevo ingreso", icon: UserPlus, adminOnly: false },
   { to: "/admin/ingresos", label: "Registro de ingresos", icon: ClipboardList, adminOnly: false },
-  { to: "/admin/solicitudes", label: "Solicitudes de reserva", icon: CalendarClock, adminOnly: true },
+  // Recepción también debe gestionar las solicitudes que llegan desde el sitio público.
+  { to: "/admin/solicitudes", label: "Solicitudes de reserva", icon: CalendarClock, adminOnly: false },
   { to: "/admin/ocupacion", label: "Ocupación", icon: CalendarDays, adminOnly: false },
   { to: "/admin/cabanas", label: "Cabañas y salones", icon: BedDouble, adminOnly: true },
   { to: "/admin/cuenta", label: "Mi cuenta", icon: User, adminOnly: false },
