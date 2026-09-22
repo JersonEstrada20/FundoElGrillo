@@ -4,6 +4,7 @@ import Footer from "@/components/site/Footer";
 import SectionHeading from "@/components/site/SectionHeading";
 import { Link } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
+import { withCatalogImagesList } from "@/lib/cabinMedia";
 import { Image } from "@/components/ui/image";
 
 const eventTypes = [
@@ -18,7 +19,7 @@ export default function Eventos() {
   useEffect(() => {
     base44.entities.Cabin.list("order", 200)
       .then((all) => {
-        setHalls(all.filter((c) => c.type === "salón" && c.is_active !== false));
+        setHalls(withCatalogImagesList(all).filter((c) => c.type === "salón" && c.is_active !== false));
       })
       .finally(() => setLoading(false));
   }, []);

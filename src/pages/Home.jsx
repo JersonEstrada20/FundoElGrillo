@@ -4,6 +4,7 @@ import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import SectionHeading, { CTAButton } from "@/components/site/SectionHeading";
 import { gallery, formatCLP } from "@/lib/cabins";
+import { withCatalogImagesList } from "@/lib/cabinMedia";
 import { base44 } from "@/api/base44Client";
 import { Image } from "@/components/ui/image";
 import { ArrowDown, MapPin } from "lucide-react";
@@ -27,7 +28,7 @@ export default function Home() {
   const [cabins, setCabins] = useState([]);
   useEffect(() => {
     base44.entities.Cabin.list("order", 100).then((all) => {
-      setCabins(all.filter((c) => c.type === "cabaña" && c.is_active !== false).slice(0, 6));
+      setCabins(withCatalogImagesList(all).filter((c) => c.type === "cabaña" && c.is_active !== false).slice(0, 6));
     }).catch(() => {});
   }, []);
   return (

@@ -3,6 +3,7 @@ import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import SectionHeading, { CTAButton } from "@/components/site/SectionHeading";
 import { formatCLP } from "@/lib/cabins";
+import { withCatalogImagesList } from "@/lib/cabinMedia";
 import { Link } from "react-router-dom";
 import CabinGallery from "@/components/CabinGallery";
 import { base44 } from "@/api/base44Client";
@@ -19,7 +20,7 @@ export default function Cabanas() {
   useEffect(() => {
     base44.entities.Cabin.list("order", 200)
       .then((all) => {
-        setCabins(all.filter((c) => c.type === "cabaña" && c.is_active !== false));
+        setCabins(withCatalogImagesList(all).filter((c) => c.type === "cabaña" && c.is_active !== false));
       })
       .finally(() => setLoading(false));
   }, []);
