@@ -80,14 +80,14 @@ export default function Home() {
           <div className="md:col-span-4">
             <span className="text-xs tracking-architectural uppercase text-accent">Bienvenido a</span>
             <img
-              src="https://pub-b9d30b344c8144668e2115f92a734075.r2.dev/8982de563_mariana2.jpg"
+              src="https://pub-bf044be5e1644eeea160056cc2074860.r2.dev/8982de563_mariana2.jpg"
               alt="Mariana Silva"
               className="w-48 h-48 object-cover rounded-full border-2 border-accent/30 mt-6"
             />
             <div className="mt-5">
               <p className="font-display text-2xl">Mariana Silva</p>
               <img
-                src="https://pub-b9d30b344c8144668e2115f92a734075.r2.dev/4a50e1996_signature.png"
+                src="https://pub-bf044be5e1644eeea160056cc2074860.r2.dev/4a50e1996_signature.png"
                 alt="Firma Mariana Silva"
                 className="h-12 mt-1"
               />
@@ -194,7 +194,7 @@ export default function Home() {
 
       {/* CTA FINAL */}
       <section className="relative py-20 md:py-28 overflow-hidden">
-        <img src="https://pub-b9d30b344c8144668e2115f92a734075.r2.dev/6a37a0352_DSC_0985.jpg" alt="Eventos" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="https://pub-bf044be5e1644eeea160056cc2074860.r2.dev/6a37a0352_DSC_0985.jpg" alt="Eventos" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-hero-bg/70" />
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
           <h2 className="font-display text-hero text-4xl md:text-6xl leading-[1.08] text-balance">
