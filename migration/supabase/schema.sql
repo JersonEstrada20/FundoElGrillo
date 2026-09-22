@@ -149,11 +149,11 @@ CREATE POLICY "cabin_delete_admin" ON cabin FOR DELETE USING (current_user_role(
 
 -- ---- booking_request ----
 -- Lectura: solo admin
-CREATE POLICY "booking_read_admin" ON booking_request FOR SELECT USING (current_user_role() = 'admin');
+CREATE POLICY "booking_read_staff" ON booking_request FOR SELECT USING (current_user_role() IN ('admin', 'recepcion', 'recepcionista'));
 -- Creación: público (cualquiera puede enviar solicitud sin login)
 CREATE POLICY "booking_insert_all" ON booking_request FOR INSERT WITH CHECK (true);
 -- Actualización/eliminación: solo admin
-CREATE POLICY "booking_update_admin" ON booking_request FOR UPDATE USING (current_user_role() = 'admin');
+CREATE POLICY "booking_update_staff" ON booking_request FOR UPDATE USING (current_user_role() IN ('admin', 'recepcion', 'recepcionista'));
 CREATE POLICY "booking_delete_admin" ON booking_request FOR DELETE USING (current_user_role() = 'admin');
 
 -- ---- visitor_entry ----

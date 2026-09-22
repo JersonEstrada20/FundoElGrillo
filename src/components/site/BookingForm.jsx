@@ -34,6 +34,9 @@ export default function BookingForm({ defaultCabin = "" }) {
     setLoading(true);
     try {
       const created = await base44.entities.BookingRequest.create({ ...form, status: "pendiente" });
+      base44.functions.invoke("notifyNewBooking", { booking_id: created.id }).catch((notifyError) => {
+        console.error("No se pudo notificar la nueva solicitud:", notifyError);
+      });
       setRefCode((created.id || "").slice(-6).toUpperCase());
       setDone(true);
     } catch (err) {

@@ -1,76 +1,30 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-const supabaseUrl = Deno.env.get("VITE_SUPABASE_URL")!;
-const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-const resendApiKey = Deno.env.get("RESEND_API_KEY")!;
-const fromEmail = Deno.env.get("RESEND_FROM_EMAIL") || "Fundo El Grillo <noreply@fundoelgrillo.cl>";
+const corsHeaders = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type" };
+const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status, headers: { ...corsHeaders, "Content-Type": "application/json" } });
 
-const supabase = createClient(supabaseUrl, serviceRoleKey, {
-  auth: { persistSession: false, autoRefreshToken: false },
-});
-
-export default async function (req: Request): Promise<Response> {
+Deno.serve(async (req: Request): Promise<Response> => {
+  if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   try {
-    const input = await req.json();
-    const { booking_id } = input;
-
-    if (!booking_id) return Response.json({ error: "booking_id required" }, { status: 400 });
-
-    const { data: booking } = await supabase
-      .from("booking_request")
-      .select("*")
-      .eq("id", booking_id)
-      .single();
-
-    if (!booking) return Response.json({ error: "Not found" }, { status: 404 });
-
-    // Obtener emails de admins
-    const { data: admins } = await supabase
-      .from("profiles")
-      .select("email")
-      .eq("role", "admin")
-      .not("email", "is", null);
-
-    const adminEmails = (admins || []).map((a: any) => a.email).filter(Boolean);
-    if (adminEmails.length === 0) return Response.json({ ok: true, sent: 0, reason: "no_admins" });
-
-    const subject = `Nueva solicitud de reserva — ${booking.cabin}`;
-    const textBody =
-      `Nueva solicitud de reserva recibida desde el sitio web.\n\n` +
-      `Nombre: ${booking.name}\n` +
-      `Email: ${booking.email}\n` +
-      `Teléfono: ${booking.phone}\n` +
-      `Cabaña: ${booking.cabin}\n` +
-      `Llegada: ${booking.arrival_date}\n` +
-      `Salida: ${booking.departure_date}\n` +
-      `Personas: ${booking.guests}\n` +
-      (booking.message ? `Mensaje: ${booking.message}\n` : "") +
-      `\nRevisa la solicitud en el panel de administración → Solicitudes.`;
-
-    let sent = 0;
-    for (const email of adminEmails) {
-      try {
-        await fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: {
-            "Authorization": `Bearer ${resendApiKey}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            from: fromEmail,
-            to: email,
-            subject,
-            text: textBody,
-          }),
-        });
-        sent++;
-      } catch (e) {
-        console.error(`Failed to email ${email}:`, e.message);
-      }
-    }
-
-    return Response.json({ ok: true, sent });
+    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+    const fromEmail = Deno.env.get("RESEND_FROM_EMAIL");
+    if (!supabaseUrl || !serviceRoleKey || !resendApiKey || !fromEmail) throw new Error("Falta configurar el correo saliente.");
+    const { booking_id } = await req.json();
+    if (!booking_id) return json({ error: "booking_id es requerido." }, 400);
+    const supabase = createClient(supabaseUrl, serviceRoleKey, { auth: { persistSession: false, autoRefreshToken: false } });
+    const { data: booking, error: bookingError } = await supabase.from("booking_request").select("*").eq("id", booking_id).single();
+    if (bookingError || !booking) return json({ error: "Solicitud no encontrada." }, 404);
+    const { data: staff } = await supabase.from("profiles").select("email").in("role", ["admin", "recepcion", "recepcionista"]).not("email", "is", null);
+    const recipients = [...new Set((staff || []).map(({ email }) => email).filter(Boolean))];
+    if (!recipients.length) return json({ ok: true, sent: 0 });
+    const text = `Nueva solicitud de reserva recibida desde el sitio web.\n\nNombre: ${booking.name}\nEmail: ${booking.email}\nTeléfono: ${booking.phone}\nCabaña: ${booking.cabin}\nLlegada: ${booking.arrival_date}\nSalida: ${booking.departure_date}\nPersonas: ${booking.guests}\n${booking.message ? `Mensaje: ${booking.message}\n` : ""}\nRevisa la solicitud en el panel → Solicitudes.`;
+    const response = await fetch("https://api.resend.com/emails", { method: "POST", headers: { Authorization: `Bearer ${resendApiKey}`, "Content-Type": "application/json" }, body: JSON.stringify({ from: fromEmail, to: recipients, subject: `Nueva solicitud de reserva — ${booking.cabin}`, text }) });
+    if (!response.ok) throw new Error(`No se pudo enviar la notificación: ${await response.text()}`);
+    return json({ ok: true, sent: recipients.length });
   } catch (error) {
-    return Response.json({ error: error.message }, { status: 500 });
+    console.error(error);
+    return json({ error: error instanceof Error ? error.message : "Error inesperado." }, 500);
   }
-}
+});
