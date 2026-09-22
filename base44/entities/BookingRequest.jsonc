@@ -1,0 +1,81 @@
+{
+  "name": "BookingRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Nombre",
+      "description": "Nombre y apellido del solicitante"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "title": "Correo electr\u00f3nico"
+    },
+    "phone": {
+      "type": "string",
+      "title": "Tel\u00e9fono"
+    },
+    "cabin": {
+      "type": "string",
+      "title": "Caba\u00f1a de inter\u00e9s",
+      "description": "Nombre de la caba\u00f1a o sal\u00f3n solicitado"
+    },
+    "arrival_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Fecha de llegada"
+    },
+    "departure_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Fecha de salida"
+    },
+    "guests": {
+      "type": "number",
+      "title": "N\u00famero de personas"
+    },
+    "message": {
+      "type": "string",
+      "title": "Mensaje",
+      "description": "Comentarios o consultas adicionales"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pendiente",
+        "confirmada",
+        "rechazada"
+      ],
+      "default": "pendiente",
+      "title": "Estado"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "phone",
+    "cabin",
+    "arrival_date",
+    "departure_date",
+    "guests"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "name": "VisitorEntry",
+  "type": "object",
+  "properties": {
+    "cabin": {
+      "type": "string",
+      "title": "Caba\u00f1a asignada",
+      "description": "Caba\u00f1a o sal\u00f3n al que se asigna el grupo"
+    },
+    "entry_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Fecha de ingreso"
+    },
+    "check_in_time": {
+      "type": "string",
+      "title": "Hora de entrada",
+      "description": "Hora real de ingreso al recinto (HH:MM)"
+    },
+    "check_out_time": {
+      "type": "string",
+      "title": "Hora de salida",
+      "description": "Hora real de salida del recinto (HH:MM)"
+    },
+    "people": {
+      "type": "array",
+      "title": "Personas",
+      "description": "Lista de personas que ingresan (titular + acompa\u00f1antes)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "full_name": {
+            "type": "string",
+            "title": "Nombre y apellido"
+          },
+          "doc_type": {
+            "type": "string",
+            "enum": [
+              "rut",
+              "pasaporte",
+              "otro"
+            ],
+            "default": "rut",
+            "title": "Tipo de documento"
+          },
+          "rut": {
+            "type": "string",
+            "title": "N\u00famero de documento"
+          },
+          "phone": {
+            "type": "string",
+            "title": "N\u00famero de celular"
+          },
+          "plate": {
+            "type": "string",
+            "title": "Patente / Placa del veh\u00edculo"
+          },
+          "nationality": {
+            "type": "string",
+            "title": "Nacionalidad"
+          }
+        },
+        "required": [
+          "full_name",
+          "rut",
+          "phone",
+          "plate",
+          "nationality"
+        ]
+      }
+    },
+    "signature_url": {
+      "type": "string",
+      "title": "Firma del grupo",
+      "description": "URL de la imagen de firma del titular del grupo"
+    },
+    "notes": {
+      "type": "string",
+      "title": "Observaciones"
+    }
+  },
+  "required": [
+    "cabin",
+    "entry_date",
+    "people"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "recepcion"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "recepcion"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "recepcion"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
