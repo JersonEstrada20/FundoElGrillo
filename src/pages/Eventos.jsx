@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import SectionHeading from "@/components/site/SectionHeading";
@@ -6,6 +7,7 @@ import { Link } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { withCatalogImagesList } from "@/lib/cabinMedia";
 import { Image } from "@/components/ui/image";
+import CabinGallery from "@/components/CabinGallery";
 
 const eventTypes = [
   "Matrimonios", "Convenciones", "Encuentros religiosos", "Capacitaciones",
@@ -13,16 +15,15 @@ const eventTypes = [
 ];
 
 export default function Eventos() {
-  const [halls, setHalls] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    base44.entities.Cabin.list("order", 200)
-      .then((all) => {
-        setHalls(withCatalogImagesList(all).filter((c) => c.type === "salón" && c.is_active !== false));
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  const [galleryHall, setGalleryHall] = useState(null);
+  const { data: halls = [], isLoading: loading } = useQuery({
+    queryKey: ["public-event-halls"],
+    queryFn: async () => {
+      const all = await base44.entities.Cabin.list("order", 200);
+      return withCatalogImagesList(all).filter((c) => c.type === "salón" && c.is_active !== false);
+    },
+    staleTime: 5 * 60 * 1000,
+  });
 
   return (
     <div className="bg-background">
@@ -50,16 +51,19 @@ export default function Eventos() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {halls.map((h) => (
               <article key={h.id} className="group">
-                <div className="aspect-[16/10] overflow-hidden bg-muted">
+                <button type="button" onClick={() => setGalleryHall(h)} className="aspect-[16/10] w-full overflow-hidden bg-muted block text-left">
                   {h.images?.[0] && (
                     <Image src={h.images[0]} alt={h.name} fittingType="fill" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   )}
-                </div>
+                </button>
                 <h3 className="font-display text-3xl mt-5">{h.name}</h3>
                 <p className="mt-2 text-foreground/70 leading-relaxed">{h.description}</p>
                 {h.capacity && (
                   <p className="mt-3 text-sm tracking-architectural uppercase text-accent">{h.capacity}</p>
                 )}
+                <button type="button" onClick={() => setGalleryHall(h)} className="mt-5 mr-5 inline-block text-sm tracking-architectural uppercase text-foreground/70 hover:text-accent transition-colors">
+                  Ver fotos y detalles →
+                </button>
                 <Link
                   to="/reservas"
                   state={{ cabin: h.name }}
@@ -97,6 +101,8 @@ export default function Eventos() {
           Solicitar cotización
         </Link>
       </section>
+
+      {galleryHall && <CabinGallery cabin={galleryHall} onClose={() => setGalleryHall(null)} />}
 
       <Footer />
     </div>

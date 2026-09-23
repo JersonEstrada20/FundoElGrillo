@@ -33,6 +33,8 @@ export default function CabinGallery({ cabin, onClose }) {
           <p className="text-xs tracking-architectural uppercase text-background/50 mt-1">
             Foto {idx + 1} de {images.length}
           </p>
+          {cabin.description && <p className="text-sm text-background/75 mt-2 max-w-xl">{cabin.description}</p>}
+          {cabin.capacity && <p className="text-xs tracking-architectural uppercase text-accent mt-2">{cabin.capacity}</p>}
         </div>
         <button onClick={onClose} className="p-2 hover:text-accent transition-colors">
           <X className="w-6 h-6" />

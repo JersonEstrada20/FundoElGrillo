@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import SectionHeading, { CTAButton } from "@/components/site/SectionHeading";
@@ -10,20 +11,19 @@ import { base44 } from "@/api/base44Client";
 import { Image } from "@/components/ui/image";
 
 const sectors = ["Todas", "Area De Acceso", "Espacio Central", "Sector Bosque Nativo"];
+const HERO_IMAGE = "https://pub-bf044be5e1644eeea160056cc2074860.r2.dev/44765e55a_monasterio-1.jpg";
 
 export default function Cabanas() {
   const [sector, setSector] = useState("Todas");
   const [galleryCabin, setGalleryCabin] = useState(null);
-  const [cabins, setCabins] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    base44.entities.Cabin.list("order", 200)
-      .then((all) => {
-        setCabins(withCatalogImagesList(all).filter((c) => c.type === "cabaña" && c.is_active !== false));
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  const { data: cabins = [], isLoading: loading } = useQuery({
+    queryKey: ["public-cabins"],
+    queryFn: async () => {
+      const all = await base44.entities.Cabin.list("order", 200);
+      return withCatalogImagesList(all).filter((c) => c.type === "cabaña" && c.is_active !== false);
+    },
+    staleTime: 5 * 60 * 1000,
+  });
 
   const list = sector === "Todas" ? cabins : cabins.filter((c) => c.sector === sector);
 
@@ -32,7 +32,7 @@ export default function Cabanas() {
       <Navbar />
 
       <section className="relative h-[52vh] min-h-[420px] flex items-end overflow-hidden">
-        <Image src={cabins.find((c) => c.name === "Monasterio")?.images?.[0] || cabins[0]?.images?.[0] || ""} alt="Cabañas" fittingType="fill" className="absolute inset-0 w-full h-full object-cover" />
+        <Image src={cabins.find((c) => c.name === "Monasterio")?.images?.[0] || HERO_IMAGE} alt="Cabañas" fittingType="fill" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 hero-grad" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-16 w-full">
           <span className="text-xs tracking-architectural uppercase text-hero/70 mb-4 block">Hospedaje</span>

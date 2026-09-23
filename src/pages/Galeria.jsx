@@ -3,7 +3,7 @@ import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
-const UP = "https://pub-b9d30b344c8144668e2115f92a734075.r2.dev";
+const UP = "https://pub-bf044be5e1644eeea160056cc2074860.r2.dev";
 
 const categories = ["Todo", "Animales", "Jardines", "Vistas", "Vistas Aéreas"];
 

@@ -39,9 +39,12 @@ const RedirectToLogin = () => {
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
+  const location = useLocation();
+  const needsAuth = location.pathname.startsWith("/admin");
 
-  // Show loading spinner while checking app public settings or auth
-  if (isLoadingPublicSettings || isLoadingAuth) {
+  // Las páginas públicas no dependen de la sesión. Esperar aquí hacía que al
+  // volver a una página pública se mostrara una pantalla completa de carga.
+  if (needsAuth && (isLoadingPublicSettings || isLoadingAuth)) {
     return (
       <div className="fixed inset-0 flex items-center justify-center">
         <div className="w-8 h-8 border-4 border-slate-200 border-t-slate-800 rounded-full animate-spin"></div>

@@ -16,7 +16,7 @@ export default function ElFundo() {
       <Navbar />
 
       <section className="relative h-[52vh] min-h-[420px] flex items-end overflow-hidden">
-        <img src="https://pub-b9d30b344c8144668e2115f92a734075.r2.dev/6a37a0352_DSC_0985.jpg" alt="El Fundo" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="https://pub-bf044be5e1644eeea160056cc2074860.r2.dev/6a37a0352_DSC_0985.jpg" alt="El Fundo" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 hero-grad" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-16 w-full">
           <span className="text-xs tracking-architectural uppercase text-hero/70 mb-4 block">Nuestra historia</span>
@@ -79,7 +79,8 @@ export default function ElFundo() {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
+            poster="https://pub-bf044be5e1644eeea160056cc2074860.r2.dev/6a37a0352_DSC_0985.jpg"
             className="w-full h-full"
           />
         </div>

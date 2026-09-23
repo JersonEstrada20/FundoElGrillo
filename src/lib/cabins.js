@@ -76,6 +76,7 @@ cabins.forEach((c) => { c.image = c.images[0]; });
 export const halls = [
   { id: "darwin", name: "Salón Darwin", desc: "Salón principal para eventos grandes, con pérgola y terraza exterior.", image: `${UP}/10b57c29c_YUNC0020b.jpg` },
   { id: "quincho", name: "Quincho Club House", desc: "Quincho con cancha de futbolito y piscina de nado, hasta 40 personas.", image: `${UP}/7a4a85385_quincho1.jpg` },
+  { id: "salon-organico", name: "Salón Orgánico", desc: "Salón acogedor para celebraciones, encuentros y actividades en un entorno natural.", image: `${UP}/DSC_3449-cbe13be2c5cadbe93fa68540f0d7b5a2.jpg` },
 ];
 
 export const gallery = [
