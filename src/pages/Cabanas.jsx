@@ -40,7 +40,7 @@ export default function Cabanas() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28 max-w-7xl mx-auto px-6 lg:px-10">
+      <section className="py-14 md:py-20 max-w-7xl mx-auto px-6 lg:px-10">
         <SectionHeading eyebrow="Nuestras cabañas" title="Elegantes cabañas inmersas en la naturaleza">
           Cada cabaña cuenta con agua de vertiente, calefacción, cocina
           completamente equipada, baño privado y estacionamiento. Revisa los
@@ -68,7 +68,7 @@ export default function Cabanas() {
         ) : list.length === 0 ? (
           <p className="text-foreground/50 border border-border p-6">No hay cabañas en este sector.</p>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {list.map((c) => (
               <article key={c.id} className="group">
                 <div className="aspect-[4/3] overflow-hidden bg-muted relative cursor-pointer" onClick={() => setGalleryCabin(c)}>
@@ -110,7 +110,7 @@ export default function Cabanas() {
         )}
       </section>
 
-      <section className="py-20 md:py-28 bg-card border-y border-border">
+      <section className="py-14 md:py-20 bg-card border-y border-border">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-2 gap-12">
           <div>
             <h2 className="font-display text-3xl md:text-4xl mb-4">Información de reservas</h2>

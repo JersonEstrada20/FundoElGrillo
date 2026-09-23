@@ -41,12 +41,17 @@ export default function CabanasAdmin() {
     setSaving(true);
     setError("");
     try {
-      const data = { ...editing };
+      // Solo se envían columnas reales de la tabla cabin. En especial, no
+      // enviar `desc`, que pertenecía al catálogo antiguo y Supabase rechaza.
+      const {
+        id, created_date, updated_date, created_by_id, desc,
+        ...data
+      } = editing;
       if (!data.high_season_price) data.high_season_price = null;
       if (!data.low_season_price) data.low_season_price = null;
       if (!data.order) data.order = 0;
-      if (data.id) {
-        await base44.entities.Cabin.update(data.id, data);
+      if (id) {
+        await base44.entities.Cabin.update(id, data);
       } else {
         await base44.entities.Cabin.create(data);
       }

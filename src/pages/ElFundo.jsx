@@ -16,7 +16,12 @@ export default function ElFundo() {
       <Navbar />
 
       <section className="relative h-[52vh] min-h-[420px] flex items-end overflow-hidden">
-        <img src="https://pub-bf044be5e1644eeea160056cc2074860.r2.dev/6a37a0352_DSC_0985.jpg" alt="El Fundo" className="absolute inset-0 w-full h-full object-cover" />
+        <video
+          src="https://media.base44.com/videos/public/6ab198431b520d2f22e78e1a/b5f5e4810_TeaserFundoElGrillo.mp4"
+          autoPlay muted loop playsInline preload="metadata"
+          poster="https://pub-bf044be5e1644eeea160056cc2074860.r2.dev/6a37a0352_DSC_0985.jpg"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
         <div className="absolute inset-0 hero-grad" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-16 w-full">
           <span className="text-xs tracking-architectural uppercase text-hero/70 mb-4 block">Nuestra historia</span>
@@ -64,25 +69,6 @@ export default function ElFundo() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="py-24 md:py-32 max-w-5xl mx-auto px-6 lg:px-10">
-        <SectionHeading eyebrow="En video" title="Teaser Fundo El Grillo">
-          Descubre la experiencia de alojarte en nuestro fundo: naturaleza,
-          historia y paisajes únicos en la Quebrada del Ají.
-        </SectionHeading>
-        <div className="aspect-video w-full overflow-hidden border border-border bg-muted">
-          <video
-            src="https://media.base44.com/videos/public/6ab198431b520d2f22e78e1a/b5f5e4810_TeaserFundoElGrillo.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="https://pub-bf044be5e1644eeea160056cc2074860.r2.dev/6a37a0352_DSC_0985.jpg"
-            className="w-full h-full"
-          />
         </div>
       </section>
 

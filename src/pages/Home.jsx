@@ -75,7 +75,7 @@ export default function Home() {
       </section>
 
       {/* INTRO */}
-      <section className="py-16 md:py-24 max-w-7xl mx-auto px-6 lg:px-10">
+      <section className="py-12 md:py-16 max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-4">
             <span className="text-xs tracking-architectural uppercase text-accent">Bienvenido a</span>
@@ -117,14 +117,14 @@ export default function Home() {
       </section>
 
       {/* SERVICIOS */}
-      <section className="py-16 md:py-24 bg-card border-y border-border">
+      <section className="py-12 md:py-16 bg-card border-y border-border">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <SectionHeading eyebrow="Qué encontrarás" title="En Fundo El Grillo puedes encontrar">
             <CTAButton to="/el-fundo">Conoce el fundo</CTAButton>
           </SectionHeading>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {services.map((s) => (
-              <div key={s.n} className="bg-card p-10">
+              <div key={s.n} className="bg-card p-7">
                 <span className="font-display text-5xl text-accent/30">{s.n}</span>
                 <h3 className="font-display text-2xl mt-4 mb-3">{s.title}</h3>
                 <p className="text-foreground/70 leading-relaxed">{s.desc}</p>
@@ -135,14 +135,14 @@ export default function Home() {
       </section>
 
       {/* CABAÑAS DESTACADAS */}
-      <section className="py-16 md:py-24 max-w-7xl mx-auto px-6 lg:px-10">
+      <section className="py-12 md:py-16 max-w-7xl mx-auto px-6 lg:px-10">
         <SectionHeading eyebrow="Hospedaje" title="Cabañas inmersas en la naturaleza">
           <CTAButton to="/cabanas">Ver todas las cabañas</CTAButton>
         </SectionHeading>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {cabins.map((c) => (
             <Link to="/cabanas" key={c.id} className="group">
-              <div className="aspect-[4/5] overflow-hidden bg-muted">
+              <div className="aspect-[4/3] overflow-hidden bg-muted">
                 <Image src={c.images?.[0]} alt={c.name} fittingType="fill" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
               <div className="mt-4 flex justify-between items-start">
@@ -158,7 +158,7 @@ export default function Home() {
       </section>
 
       {/* GALERÍA */}
-      <section className="py-16 md:py-24 bg-card border-y border-border">
+      <section className="py-12 md:py-16 bg-card border-y border-border">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <SectionHeading eyebrow="Galería" title="Un recorrido por el fundo" />
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -177,7 +177,7 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIOS */}
-      <section className="py-16 md:py-24 max-w-7xl mx-auto px-6 lg:px-10">
+      <section className="py-12 md:py-16 max-w-7xl mx-auto px-6 lg:px-10">
         <SectionHeading eyebrow="Opiniones" title="Quienes nos han visitado" />
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((t) => (
@@ -193,7 +193,7 @@ export default function Home() {
       </section>
 
       {/* CTA FINAL */}
-      <section className="relative py-20 md:py-28 overflow-hidden">
+      <section className="relative py-16 md:py-20 overflow-hidden">
         <img src="https://pub-bf044be5e1644eeea160056cc2074860.r2.dev/6a37a0352_DSC_0985.jpg" alt="Eventos" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-hero-bg/70" />
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
@@ -208,7 +208,7 @@ export default function Home() {
       </section>
 
       {/* UBICACIÓN */}
-      <section className="py-16 md:py-24 max-w-7xl mx-auto px-6 lg:px-10">
+      <section className="py-12 md:py-16 max-w-7xl mx-auto px-6 lg:px-10">
         <SectionHeading eyebrow="Cómo llegar" title="Ubicación">
           A 15 minutos de Quillota, en la Quebrada del Ají. Un lugar histórico
           rodeado de bosque nativo y microclima único.

@@ -11,6 +11,7 @@ const normalizeUrl = (url) => typeof url === "string" ? url.replace(OLD_R2_BASE,
 // las fichas desde el panel de administración.
 export function withCatalogImages(item) {
   const fallback = catalog.find((entry) => entry.name === item?.name);
+  const { desc: fallbackDescription, ...fallbackData } = fallback || {};
   const itemImages = (item?.images || []).map(normalizeUrl).filter(Boolean);
   const fallbackImages = fallback?.images || [];
 
@@ -21,10 +22,10 @@ export function withCatalogImages(item) {
     : itemImages.length ? itemImages : fallbackImages;
 
   return {
-    ...fallback,
+    ...fallbackData,
     ...item,
     images,
-    description: item?.description || fallback?.desc || "Espacio para eventos rodeado de naturaleza.",
+    description: item?.description || fallbackDescription || "Espacio para eventos rodeado de naturaleza.",
   };
 }
 
