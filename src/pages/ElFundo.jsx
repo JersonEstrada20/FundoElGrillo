@@ -10,6 +10,13 @@ const features = [
   { n: "04", title: "Productos orgánicos", desc: "Piñas, naranjas, miel y aceite de oliva cultivados de forma totalmente orgánica." },
 ];
 
+const reports = [
+  { title: 'Chile Conectado de TVN', description: 'Simón Oliveros visita Fundo El Grillo para conocer la historia de la Quebrada del Ají.', url: 'https://www.tvn.cl/programas/chile-conectado/capitulos/chile-conectado-17-de-mayo-de-2026-' },
+  { title: 'Sabores sin límites', description: 'Álvaro Lois conoce los cultivos del fundo y prepara un plato con sus productos.', embed: 'https://www.youtube-nocookie.com/embed/Hs-zm9hDsfY?end=492' },
+  { title: 'Los últimos secretos del bosque nativo', description: 'Un documental sobre la flora, fauna y el bosque siempre vivo del fundo.', embed: 'https://www.youtube-nocookie.com/embed/XKs59DvN2-o' },
+  { title: 'Tu ojo viajero', description: 'Un reportaje que muestra Fundo El Grillo y Hotel Boston.', embed: 'https://www.youtube-nocookie.com/embed/ZrKaVQScVNw' },
+];
+
 export default function ElFundo() {
   return (
     <div className="bg-background">
@@ -69,6 +76,31 @@ export default function ElFundo() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="py-20 md:py-28 max-w-7xl mx-auto px-6 lg:px-10">
+        <SectionHeading eyebrow="En pantalla" title="Reportajes sobre el fundo">
+          Conoce la historia, los cultivos y los paisajes de Fundo El Grillo a través de estos programas y documentales.
+        </SectionHeading>
+        <div className="grid md:grid-cols-2 gap-10">
+          {reports.map((report) => (
+            <article key={report.title} className="border border-border bg-card">
+              {report.embed ? (
+                <div className="aspect-video">
+                  <iframe className="w-full h-full" src={report.embed} title={report.title} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                </div>
+              ) : (
+                <div className="aspect-video flex items-center justify-center bg-hero-bg p-8 text-center">
+                  <a className="px-6 py-3 border border-hero/50 text-hero tracking-architectural uppercase text-sm hover:bg-hero hover:text-hero-bg transition-colors" href={report.url} target="_blank" rel="noreferrer">Ver en TVN</a>
+                </div>
+              )}
+              <div className="p-7">
+                <h3 className="font-display text-3xl">{report.title}</h3>
+                <p className="mt-3 text-foreground/70 leading-relaxed">{report.description}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 

@@ -7,53 +7,17 @@ const UP = "https://pub-bf044be5e1644eeea160056cc2074860.r2.dev";
 
 const categories = ["Todo", "Animales", "Jardines", "Vistas", "Vistas Aéreas"];
 
-const items = [
-  { src: `${UP}/a642c8897_granja_7.jpg`, cat: "Animales" },
-  { src: `${UP}/8226adcf4_granja_8.jpg`, cat: "Animales" },
-  { src: `${UP}/07b1e1d0d_granja_10.jpg`, cat: "Animales" },
-  { src: `${UP}/9ec93ffac_granja_3.jpg`, cat: "Animales" },
-  { src: `${UP}/cce7bd6d8_granja_6.jpg`, cat: "Animales" },
-  { src: `${UP}/8d5e07e1a_animales9.jpg`, cat: "Animales" },
-  { src: `${UP}/5fb6fbbc4_animales1.jpg`, cat: "Animales" },
-  { src: `${UP}/2ea31ef5d_jardin8.jpg`, cat: "Jardines" },
-  { src: `${UP}/981264b10_jardin2.jpg`, cat: "Jardines" },
-  { src: `${UP}/33d5023da_jardin9.jpg`, cat: "Jardines" },
-  { src: `${UP}/a9c7f127b_jardin15.jpg`, cat: "Jardines" },
-  { src: `${UP}/9c5c14598_jardin20.jpg`, cat: "Jardines" },
-  { src: `${UP}/c5f7ccfb3_jardin16.jpg`, cat: "Jardines" },
-  { src: `${UP}/afb24a4f0_jardin23.jpg`, cat: "Jardines" },
-  { src: `${UP}/f27053945_jardin11.jpg`, cat: "Jardines" },
-  { src: `${UP}/be616b14c_jardin18.jpg`, cat: "Jardines" },
-  { src: `${UP}/8c9b1e82a_jardin17.jpg`, cat: "Jardines" },
-  { src: `${UP}/10ff0471f_jardin24.jpg`, cat: "Jardines" },
-  { src: `${UP}/250f6bc8c_jardin25.jpg`, cat: "Jardines" },
-  { src: `${UP}/797000476_DSC_0215.jpg`, cat: "Vistas" },
-  { src: `${UP}/7800eb222_DSC_0573.jpg`, cat: "Vistas" },
-  { src: `${UP}/a88682ad2_DSC_0708.jpg`, cat: "Vistas" },
-  { src: `${UP}/4ae89ed54_DSC_0639.jpg`, cat: "Vistas" },
-  { src: `${UP}/09fc7dd23_DSC_0607.jpg`, cat: "Vistas" },
-  { src: `${UP}/104b70bf7_DSC_0718.jpg`, cat: "Vistas" },
-  { src: `${UP}/5868285f6_DSC_0381.jpg`, cat: "Vistas" },
-  { src: `${UP}/a1fb25d2b_DSC_0730.jpg`, cat: "Vistas" },
-  { src: `${UP}/ebe168671_DSC_0671.jpg`, cat: "Vistas" },
-  { src: `${UP}/97bf19083_DSC_0584.jpg`, cat: "Vistas" },
-  { src: `${UP}/5df60fdfa_DSC_0591.jpg`, cat: "Vistas" },
-  { src: `${UP}/65141c0f1_DSC_0612.jpg`, cat: "Vistas" },
-  { src: `${UP}/cfb98f988_DSC_0599.jpg`, cat: "Vistas" },
-  { src: `${UP}/e57baae71_DSC_0218.jpg`, cat: "Vistas" },
-  { src: `${UP}/d8aa69fd1_DSC_0464.jpg`, cat: "Vistas" },
-  { src: `${UP}/fe897790f_DSC_0307.jpg`, cat: "Vistas" },
-  { src: `${UP}/b7a1666b7_DSC_0627.jpg`, cat: "Vistas" },
-  { src: `${UP}/0c4e8bf3f_grillo-95.jpg`, cat: "Vistas" },
-  { src: `${UP}/6cb6b4811_grillo-57.jpg`, cat: "Vistas" },
-  { src: `${UP}/92df81177_g4.jpg`, cat: "Vistas" },
-  { src: `${UP}/c7408f458_g8.jpg`, cat: "Vistas" },
-  { src: `${UP}/92fcf52e8_general4.jpg`, cat: "Vistas" },
-  { src: `${UP}/4adb734d5_YUNC0005.jpg`, cat: "Vistas Aéreas" },
-  { src: `${UP}/9f6fade58_YUNC0019.jpg`, cat: "Vistas Aéreas" },
-  { src: `${UP}/9770be25f_YUNC0010.jpg`, cat: "Vistas Aéreas" },
-  { src: `${UP}/96b57a135_YUNC0013.jpg`, cat: "Vistas Aéreas" },
-];
+// Las 104 fotografías originales viven ahora en R2, no en el sitio antiguo.
+const legacyFiles = ["DSC_0381.jpg", "granja_4.jpg", "DSC_0286.jpg", "granja_10.jpg", "DSC_0552.jpg", "g4.jpg", "YUNC0014.jpg", "g9.jpg", "jardin23.jpg", "jardin24.jpg", "granja_1.jpg", "DSC_0639.jpg", "jardin15.jpg", "jardin8.jpg", "animales1.jpg", "DSC_0559.jpg", "granja_3.jpg", "DSC_0573.jpg", "YUNC0004.jpg", "jardin3.jpg", "animales5.jpg", "DSC_0391.jpg", "animales9.jpg", "DSC_0379.jpg", "YUNC0016.jpg", "granja_5.jpg", "g8.jpg", "DSC_0607.jpg", "DSC_0218.jpg", "jardin7.jpg", "jardin9.jpg", "jardin22.jpg", "DSC_0292.jpg", "general6.jpg", "YUNC0009.jpg", "jardin6.jpg", "jardin1.jpg", "DSC_0129.jpg", "jardin5.jpg", "general8.jpg", "jardin25.jpg", "YUNC0012.jpg", "jardin21.jpg", "YUNC0032.jpg", "DSC_0461.jpg", "animales6.jpg", "DSC_0437.jpg", "jardin10.jpg", "YUNC0027.jpg", "DSC_0584.jpg", "granja_9.jpg", "animales4.jpg", "g3.jpg", "DSC_0368.jpg", "jardin11.jpg", "DSC_0385.jpg", "DSC_0296.jpg", "jardin17.jpg", "g6.jpg", "DSC_0215.jpg", "DSC_0708.jpg", "DSC_0602.jpg", "DSC_0464.jpg", "DSC_0680.jpg", "DSC_0627.jpg", "DSC_0553.jpg", "jardin14.jpg", "DSC_0300.jpg", "jardin20.jpg", "jardin4.jpg", "granja_2.jpg", "YUNC0019.jpg", "YUNC0034.jpg", "DSC_0612.jpg", "YUNC0007.jpg", "DSC_0718.jpg", "jardin18.jpg", "jardin16.jpg", "YUNC0029.jpg", "DSC_0730.jpg", "DSC_0599.jpg", "animales7.jpg", "DSC_0411.jpg", "DSC_0445.jpg", "granja_6.jpg", "grillo-66.jpg", "YUNC0023.jpg", "general4.jpg", "grillo-57.jpg", "DSC_0290.jpg", "DSC_0671.jpg", "YUNC0005.jpg", "DSC_0700.jpg", "YUNC0013.jpg", "grillo-95.jpg", "YUNC0030.jpg", "granja_7.jpg", "granja_8.jpg", "jardin2.jpg", "DSC_0307.jpg", "DSC_0591.jpg", "jardin19.jpg", "DSC_0630.jpg", "YUNC0010.jpg"];
+
+const items = legacyFiles.map((filename) => {
+  const name = filename.toLowerCase();
+  const cat = name.startsWith("yunc") ? "Vistas Aéreas"
+    : name.includes("animal") || name.includes("granja") ? "Animales"
+      : name.includes("jardin") || name.startsWith("g") || name.includes("general") || name.includes("grillo") ? "Jardines"
+        : "Vistas";
+  return { src: `${UP}/legacy-gallery/${filename}`, cat };
+});
 
 export default function Galeria() {
   const [cat, setCat] = useState("Todo");

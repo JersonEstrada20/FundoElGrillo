@@ -113,16 +113,26 @@ export default function Cabanas() {
       <section className="py-14 md:py-20 bg-card border-y border-border">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-2 gap-12">
           <div>
-            <h2 className="font-display text-3xl md:text-4xl mb-4">Información de reservas</h2>
+            <h2 className="font-display text-3xl md:text-4xl mb-4">Información importante</h2>
             <ul className="space-y-3 text-foreground/70">
               <li>· Los valores son por noche y por cabaña, según capacidad indicada.</li>
-              <li>· Temporada alta: octubre a marzo y feriados.</li>
-              <li>· Temporada baja: abril a septiembre.</li>
-              <li>· Todas las cabañas incluyen cocina equipada, TV satelital y calefacción.</li>
-              <li>· Se solicita seña para confirmar la reserva.</li>
+              <li>· Check-in desde las 13:00 y check-out hasta las 11:00. Late check-out hasta las 20:00 sujeto a disponibilidad, con recargo del 50%.</li>
+              <li>· Temporada alta: 1 de septiembre a 31 de marzo. Temporada baja: 1 de abril a 31 de agosto.</li>
+              <li>· La reserva se confirma con 50% de abono; el saldo se paga dos días antes de llegar.</li>
+              <li>· En temporada alta la estadía mínima es de 2 noches; en fines de semana largos y Año Nuevo, 3 noches.</li>
+              <li>· Todas las cabañas incluyen ropa de cama y vajilla; no incluyen toallas.</li>
+              <li>· Se aceptan mascotas en cabañas seleccionadas, previo acuerdo.</li>
             </ul>
           </div>
           <div className="flex flex-col justify-center">
+            <ul className="space-y-3 text-foreground/70 mb-6">
+              <li>· Persona adicional: $10.000. Visitas: $5.000 por persona.</li>
+              <li>· Servicio de mucama disponible: $12.000.</li>
+              <li>· Se cobra $25.000 de aseo si la cabaña no se entrega ordenada e higienizada.</li>
+              <li>· Piscinas privadas son de refresco; las compartidas son de nado.</li>
+              <li>· No se permiten equipos de audio. Entre 22:00 y 08:00 se debe respetar el descanso.</li>
+              <li>· Por la ubicación rural puede haber baja o nula señal telefónica e internet. Los precios no incluyen IVA.</li>
+            </ul>
             <p className="text-foreground/70 mb-6">¿Lista tu escapada? Envíanos tu solicitud y te contactamos para confirmar disponibilidad.</p>
             <CTAButton to="/reservas">Solicitar reserva</CTAButton>
           </div>

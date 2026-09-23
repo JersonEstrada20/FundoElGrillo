@@ -31,6 +31,8 @@ export default function Footer() {
             <li><Link to="/galeria" className="text-hero/80 hover:text-accent transition-colors">Galería</Link></li>
               <li><Link to="/el-fundo" className="text-hero/80 hover:text-accent transition-colors">El Fundo</Link></li>
               <li><Link to="/reservas" className="text-hero/80 hover:text-accent transition-colors">Reservas</Link></li>
+              <li><Link to="/terminos" className="text-hero/80 hover:text-accent transition-colors">Términos y condiciones</Link></li>
+              <li><Link to="/privacidad" className="text-hero/80 hover:text-accent transition-colors">Política de privacidad</Link></li>
             </ul>
           </div>
 
@@ -38,6 +40,7 @@ export default function Footer() {
             <h4 className="text-xs tracking-architectural uppercase text-hero/50 mb-5">Contacto</h4>
             <ul className="space-y-3 text-hero/80">
               <li className="flex items-center gap-2"><Phone className="w-4 h-4 text-accent" /> (33) 231 6500</li>
+              <li className="pl-6">(33) 231 2800 · (33) 225 3197</li>
               <li className="flex items-center gap-2"><Mail className="w-4 h-4 text-accent" /> consultas@cabañasfundoelgrillo.cl</li>
               <li className="flex items-start gap-2"><MapPin className="w-4 h-4 text-accent mt-1" /> Cam. Fundó El Grillo, Quillota, Valparaíso</li>
             </ul>

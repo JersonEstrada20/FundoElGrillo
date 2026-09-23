@@ -14,6 +14,12 @@ const eventTypes = [
   "Paseos de colegio", "Agrupaciones", "Campamentos de verano", "Retiros",
 ];
 
+const legacyDetails = {
+  "Salón Darwin": "Ideal para ceremonias religiosas y eventos especiales. Cuenta con 240 m² y dependencias complementarias; podemos coordinar banquetería, sonido, iluminación, animación, música y montaje.",
+  "Salón Orgánico": "Espacio con áreas verdes, piscina y terraza para ceremonias. Ideal para paseos de colegio, agrupaciones, capacitaciones, matrimonios, campamentos de verano y retiros.",
+  "Quincho Club House": "Un espacio privado con áreas verdes, asaderas, juegos infantiles, piscina y quincho con vista. Es una alternativa especialmente pensada para grupos que quieran compartir y pernoctar juntos.",
+};
+
 export default function Eventos() {
   const [galleryHall, setGalleryHall] = useState(null);
   const { data: halls = [], isLoading: loading } = useQuery({
@@ -57,7 +63,7 @@ export default function Eventos() {
                   )}
                 </button>
                 <h3 className="font-display text-3xl mt-5">{h.name}</h3>
-                <p className="mt-2 text-foreground/70 leading-relaxed">{h.description}</p>
+                <p className="mt-2 text-foreground/70 leading-relaxed">{legacyDetails[h.name] || h.description}</p>
                 {h.capacity && (
                   <p className="mt-3 text-sm tracking-architectural uppercase text-accent">{h.capacity}</p>
                 )}

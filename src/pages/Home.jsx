@@ -190,6 +190,10 @@ export default function Home() {
             </div>
           ))}
         </div>
+        <div className="mt-10 border border-border p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+          <div><p className="font-display text-2xl">Tu opinión nos importa mucho</p><p className="mt-1 text-foreground/70">Cuéntanos tu experiencia en Fundo El Grillo.</p></div>
+          <a href="https://www.tripadvisor.cl/Hotel_Review-g652401-d643324-Reviews-Fundo_El_Grillo-Quillota_Valparaiso_Region.html?m=19905" target="_blank" rel="noreferrer" className="shrink-0 px-6 py-3 border border-accent text-accent text-sm tracking-architectural uppercase hover:bg-accent hover:text-accent-foreground transition-colors">Opina en Tripadvisor</a>
+        </div>
       </section>
 
       {/* CTA FINAL */}

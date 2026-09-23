@@ -15,6 +15,8 @@ import Eventos from '@/pages/Eventos';
 import ElFundo from '@/pages/ElFundo';
 import Galeria from '@/pages/Galeria';
 import Reservas from '@/pages/Reservas';
+import Terminos from '@/pages/Terminos';
+import Privacidad from '@/pages/Privacidad';
 // Layout
 import PublicLayout from '@/components/site/PublicLayout';
 // Auth
@@ -73,6 +75,8 @@ const AuthenticatedApp = () => {
         <Route path="/el-fundo" element={<ElFundo />} />
         <Route path="/galeria" element={<Galeria />} />
         <Route path="/reservas" element={<Reservas />} />
+        <Route path="/terminos" element={<Terminos />} />
+        <Route path="/privacidad" element={<Privacidad />} />
       </Route>
 
       <Route path="/login" element={<Login />} />
