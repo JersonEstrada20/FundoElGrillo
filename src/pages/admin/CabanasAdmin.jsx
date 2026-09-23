@@ -41,12 +41,15 @@ export default function CabanasAdmin() {
     setSaving(true);
     setError("");
     try {
-      // Solo se envían columnas reales de la tabla cabin. En especial, no
-      // enviar `desc`, que pertenecía al catálogo antiguo y Supabase rechaza.
-      const {
-        id, created_date, updated_date, created_by_id, desc, image,
-        ...data
-      } = editing;
+      // El catálogo visual conserva campos heredados (image, desc, high,
+      // low). Supabase solo puede recibir columnas reales de `cabin`.
+      const id = editing.id;
+      const cabinFields = [
+        "name", "type", "description", "capacity", "rooms", "pool",
+        "high_season_price", "low_season_price", "sector", "images",
+        "is_active", "order",
+      ];
+      const data = Object.fromEntries(cabinFields.map((field) => [field, editing[field]]));
       if (!data.high_season_price) data.high_season_price = null;
       if (!data.low_season_price) data.low_season_price = null;
       if (!data.order) data.order = 0;
