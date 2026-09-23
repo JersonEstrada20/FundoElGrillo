@@ -28,7 +28,11 @@ export function withCatalogImages(item) {
     ...fallbackData,
     ...item,
     images,
-    description: item?.description || fallbackDescription || "Espacio para eventos rodeado de naturaleza.",
+    description: item?.description || fallbackDescription || (
+      item?.type === "salón"
+        ? "Espacio para eventos rodeado de naturaleza."
+        : "Cabaña inmersa en la naturaleza, ideal para descansar y disfrutar el fundo."
+    ),
   };
 }
 
