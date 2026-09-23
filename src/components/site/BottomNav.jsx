@@ -1,12 +1,11 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Home, BedDouble, Images, LayoutDashboard } from "lucide-react";
+import { Home, BedDouble, Images } from "lucide-react";
 
 const tabs = [
   { to: "/", label: "Inicio", icon: Home },
   { to: "/cabanas", label: "Cabañas", icon: BedDouble },
   { to: "/galeria", label: "Galería", icon: Images },
-  { to: "/admin", label: "Admin", icon: LayoutDashboard },
 ];
 
 export default function BottomNav() {
