@@ -20,7 +20,7 @@ export default function RegistroEntrada() {
   const [done, setDone] = useState(null);
   const [error, setError] = useState("");
   const [existingEntries, setExistingEntries] = useState([]);
-  const [hasSignature, setHasSignature] = useState(false);
+  const [, setHasSignature] = useState(false);
   const [confirmOccupied, setConfirmOccupied] = useState(false);
   const [cabinOptions, setCabinOptions] = useState([]);
   const firstFieldRef = useRef(null);
@@ -87,10 +87,9 @@ export default function RegistroEntrada() {
   });
   const valid =
     people.length > 0 &&
-    people.every((p) => p.full_name && p.rut && p.phone && p.nationality && (p.doc_type !== "rut" || isValidRut(p.rut))) &&
+    people.every((p) => !p.rut || p.doc_type !== "rut" || isValidRut(p.rut)) &&
     cabin &&
     entryDate &&
-    hasSignature &&
     (!cabinOccupied || confirmOccupied);
 
   const submit = async (e) => {
@@ -229,7 +228,7 @@ export default function RegistroEntrada() {
           </div>
           <div>
             <label className="text-xs tracking-architectural uppercase text-foreground/50 block mb-2 flex items-center gap-1">
-              <Clock className="w-3 h-3" /> Hora de entrada (opcional)
+              <Clock className="w-3 h-3" /> Hora de entrada
             </label>
             <input type="time" className={inputCls} value={checkInTime} onChange={(e) => setCheckInTime(e.target.value)} />
           </div>
@@ -268,7 +267,6 @@ export default function RegistroEntrada() {
                         placeholder="Nombre y apellido"
                         value={p.full_name}
                         onChange={(e) => updatePerson(i, "full_name", e.target.value)}
-                        required
                       />
                     </div>
                     <div className="md:col-span-2">
@@ -290,13 +288,12 @@ export default function RegistroEntrada() {
                           value={p.rut}
                           onChange={(e) => updatePerson(i, "rut", e.target.value)}
                           onBlur={(e) => formatRutField(i, e.target.value)}
-                          required
                         />
                         {docErrors[i] && <p className="text-xs text-destructive mt-1">{docErrors[i]}</p>}
                       </div>
                     </div>
                     <div className="md:col-span-2">
-                      <input className={inputCls} placeholder="+56 9 1234 5678" value={p.phone} onChange={(e) => updatePerson(i, "phone", e.target.value)} required />
+                      <input className={inputCls} placeholder="+56 9 1234 5678" value={p.phone} onChange={(e) => updatePerson(i, "phone", e.target.value)} />
                     </div>
                     <div className="md:col-span-2">
                       <input className={`${inputCls} font-mono uppercase tracking-wider`} placeholder="AB CD 12" value={p.plate} onChange={(e) => updatePerson(i, "plate", e.target.value.toUpperCase())} />
@@ -336,7 +333,7 @@ export default function RegistroEntrada() {
 
         {/* Observaciones */}
         <div>
-          <label className="text-xs tracking-architectural uppercase text-foreground/50 block mb-2">Observaciones (opcional)</label>
+          <label className="text-xs tracking-architectural uppercase text-foreground/50 block mb-2">Observaciones</label>
           <textarea className={inputCls} rows={2} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Notas internas sobre este ingreso" />
         </div>
 
@@ -356,7 +353,7 @@ export default function RegistroEntrada() {
             Guardar registro
           </button>
           <span className="text-xs text-foreground/50 self-center">
-            {valid ? "Listo para guardar" : "Completa todos los campos, documento válido y firma"}
+            {valid ? "Listo para guardar" : "Selecciona la cabaña y fecha de ingreso"}
           </span>
         </div>
       </form>
