@@ -44,7 +44,7 @@ export default function CabanasAdmin() {
       // Solo se envían columnas reales de la tabla cabin. En especial, no
       // enviar `desc`, que pertenecía al catálogo antiguo y Supabase rechaza.
       const {
-        id, created_date, updated_date, created_by_id, desc,
+        id, created_date, updated_date, created_by_id, desc, image,
         ...data
       } = editing;
       if (!data.high_season_price) data.high_season_price = null;

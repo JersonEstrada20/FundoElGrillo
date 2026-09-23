@@ -11,7 +11,10 @@ const normalizeUrl = (url) => typeof url === "string" ? url.replace(OLD_R2_BASE,
 // las fichas desde el panel de administración.
 export function withCatalogImages(item) {
   const fallback = catalog.find((entry) => entry.name === item?.name);
-  const { desc: fallbackDescription, ...fallbackData } = fallback || {};
+  const fallbackDescription = fallback?.desc;
+  const fallbackData = Object.fromEntries(
+    Object.entries(fallback || {}).filter(([key]) => key !== "desc" && key !== "image")
+  );
   const itemImages = (item?.images || []).map(normalizeUrl).filter(Boolean);
   const fallbackImages = fallback?.images || [];
 

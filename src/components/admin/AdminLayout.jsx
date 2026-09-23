@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate, useLocation, useOutlet } from "react-router
 import { useAuth } from "@/lib/AuthContext";
 import { LayoutDashboard, UserPlus, ClipboardList, LogOut, ExternalLink, CalendarClock, CalendarDays, BedDouble, Moon, Sun, User } from "lucide-react";
 
-const LOGO = "https://media.base44.com/images/public/6ab198431b520d2f22e78e1a/87d1b1328_image.png";
+const LOGO = "https://pub-bf044be5e1644eeea160056cc2074860.r2.dev/brand-logo.png";
 import { useTheme } from "@/lib/useTheme";
 import MobileAdminHeader from "@/components/admin/MobileAdminHeader";
 

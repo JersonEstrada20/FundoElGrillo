@@ -38,7 +38,7 @@ export default function Home() {
       {/* HERO */}
       <section className="relative h-screen min-h-[640px] flex items-end overflow-hidden">
         <video
-          src="https://media.base44.com/videos/public/6ab198431b520d2f22e78e1a/b5f5e4810_TeaserFundoElGrillo.mp4"
+          src="https://pub-bf044be5e1644eeea160056cc2074860.r2.dev/teaser-fundo-el-grillo.mp4"
           autoPlay
           muted
           loop

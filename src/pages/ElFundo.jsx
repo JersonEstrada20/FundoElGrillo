@@ -17,7 +17,7 @@ export default function ElFundo() {
 
       <section className="relative h-[52vh] min-h-[420px] flex items-end overflow-hidden">
         <video
-          src="https://media.base44.com/videos/public/6ab198431b520d2f22e78e1a/b5f5e4810_TeaserFundoElGrillo.mp4"
+          src="https://pub-bf044be5e1644eeea160056cc2074860.r2.dev/teaser-fundo-el-grillo.mp4"
           autoPlay muted loop playsInline preload="metadata"
           poster="https://pub-bf044be5e1644eeea160056cc2074860.r2.dev/6a37a0352_DSC_0985.jpg"
           className="absolute inset-0 w-full h-full object-cover"

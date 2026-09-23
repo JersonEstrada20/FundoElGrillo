@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/lib/useTheme";
 
-const LOGO = "https://media.base44.com/images/public/6ab198431b520d2f22e78e1a/87d1b1328_image.png";
+const LOGO = "https://pub-bf044be5e1644eeea160056cc2074860.r2.dev/brand-logo.png";
 
 const links = [
   { label: "Inicio", to: "/" },
