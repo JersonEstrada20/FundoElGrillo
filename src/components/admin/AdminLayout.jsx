@@ -32,7 +32,8 @@ export default function AdminLayout() {
 
   const handleLogout = () => {
     logout(false);
-    navigate("/");
+    // La aplicación instalable de recepción nunca debe devolver al sitio público.
+    navigate("/login?returnTo=%2Fadmin");
   };
 
   return (
