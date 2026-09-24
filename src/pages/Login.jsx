@@ -42,6 +42,7 @@ export default function Login() {
   return (
     <AuthLayout
       icon={LogIn}
+      logo={isReceptionAccess ? "/recepcion-icon-512.png" : undefined}
       title={isReceptionAccess ? "Acceso a recepción" : "Bienvenido"}
       subtitle={isReceptionAccess ? "Ingresa para abrir el panel de recepción" : "Ingresa a tu cuenta"}
       footer={

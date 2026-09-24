@@ -1,4 +1,4 @@
-const CACHE = "fundo-recepcion-v2";
+const CACHE = "fundo-recepcion-v3";
 const APP_SHELL = ["/", "/recepcion.webmanifest", "/recepcion-icon-192.png", "/recepcion-icon-512.png"];
 
 self.addEventListener("install", (event) => {
